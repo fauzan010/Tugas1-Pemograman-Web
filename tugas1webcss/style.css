@@ -1,0 +1,152 @@
+/* Reset dan font */
+* { margin:0; padding:0; box-sizing:border-box; }
+:root{
+    --bg:#ecf0f1; --primary:#1ABC9C; --dark:#2C3E50; --muted:#7f8c8d; --card:#ffffff;
+    --container:1100px;
+    --glass: rgba(255,255,255,0.6);
+}
+body{
+    font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    color:var(--dark);
+    background: linear-gradient(180deg,#f7fbfb 0%, #eef6f5 100%);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.6;
+}
+
+/* Layout container */
+.container{
+    max-width:var(--container);
+    margin:0 auto;
+    padding:0 18px;
+}
+
+/* Header */
+.site-header{
+    background: linear-gradient(90deg, rgba(44,62,80,0.95), rgba(52,73,94,0.95));
+    color:#fff;
+    position:sticky;
+    top:0;
+    z-index:50;
+    box-shadow:0 2px 8px rgba(0,0,0,0.08);
+}
+.header-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    padding:12px 0;
+}
+.brand h1{ font-size:1.1rem; letter-spacing:0.6px; }
+.brand small{ display:block; color:rgba(255,255,255,0.85); font-size:0.8rem; }
+
+/* Navbar */
+.navbar ul{ list-style:none; display:flex; gap:8px; align-items:center; }
+.navbar a{
+    color:#fff; text-decoration:none; padding:8px 12px; border-radius:6px; font-weight:600; opacity:0.95;
+    transition:all .22s ease;
+}
+.navbar a:hover, .navbar a.active{ background:var(--primary); color:#033; box-shadow:0 6px 18px rgba(26,188,156,0.12); }
+
+/* CSS-only toggle controls */
+.nav-toggle-input { display:none; }
+
+/* label acts as toggle button */
+.nav-toggle{
+    background:none; border:none; display:none; width:44px; height:44px; align-items:center; justify-content:center; cursor:pointer;
+}
+.hamburger, .hamburger::before, .hamburger::after{
+    display:block; width:22px; height:2px; background:#fff; border-radius:2px; position:relative;
+}
+.hamburger::before, .hamburger::after{ content:""; position:absolute; left:0; }
+.hamburger::before{ top:-7px; }
+.hamburger::after{ top:7px; }
+
+/* animate hamburger when checked */
+.nav-toggle-input:checked + .nav-toggle .hamburger{ background:transparent; }
+.nav-toggle-input:checked + .nav-toggle .hamburger::before{ transform:rotate(45deg) translate(5px,5px); top:0; }
+.nav-toggle-input:checked + .nav-toggle .hamburger::after{ transform:rotate(-45deg) translate(5px,-5px); top:0; }
+
+/* Hero */
+.hero{ padding:44px 0; }
+.hero-inner{ display:flex; gap:30px; align-items:center; }
+.hero-text h2{ font-size:2rem; color:var(--dark); margin-bottom:10px; animation:fadeUp .7s ease both; }
+.hero-text p{ color:var(--muted); margin-bottom:18px; max-width:620px; }
+.hero-visual img{ width:100%; max-width:540px; border-radius:12px; box-shadow: 0 14px 40px rgba(44,62,80,0.12); transform:translateY(6px); transition:transform .4s ease; }
+.hero-visual img:hover{ transform:translateY(0) scale(1.01); }
+
+/* Buttons */
+.btn{
+    display:inline-block; background:var(--primary); color:#023; padding:10px 18px; border-radius:8px; text-decoration:none; font-weight:700;
+    box-shadow: 0 8px 24px rgba(26,188,156,0.12); transition:transform .18s ease, box-shadow .18s ease;
+}
+.btn:hover{ transform:translateY(-3px); box-shadow: 0 18px 36px rgba(26,188,156,0.16); }
+.btn-outline{ display:inline-block; padding:8px 12px; border-radius:8px; border:2px solid var(--primary); color:var(--primary); text-decoration:none; font-weight:700; }
+
+/* Main cards */
+.main-content{ padding:28px 0 60px; }
+.cards{ display:grid; grid-template-columns: repeat(3,1fr); gap:18px; }
+.card{
+    background:var(--card); padding:18px; border-radius:12px; box-shadow:0 8px 24px rgba(20,20,20,0.04);
+    min-height:180px; display:flex; flex-direction:column; gap:12px; transition:transform .28s ease, box-shadow .28s ease;
+}
+.card:hover{ transform:translateY(-6px); box-shadow:0 26px 46px rgba(20,20,20,0.08); }
+.card h3{ margin-bottom:4px; }
+.gallery{ display:flex; gap:8px; }
+.gallery img{ width:100%; border-radius:8px; object-fit:cover; height:96px; }
+
+/* Contact form */
+.contact-form input, .contact-form textarea{
+    width:100%; padding:10px 12px; border-radius:8px; border:1px solid #e6e9eb; background:#fafafa; outline:none;
+    font-family:inherit; margin-bottom:8px;
+}
+.contact-form button{ width:100%; }
+
+/* Footer */
+.site-footer{ background:linear-gradient(90deg,var(--dark), #233447); color:#fff; padding:18px 0; }
+.footer-inner{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; font-size:0.95rem; }
+.socials a{ color:rgba(255,255,255,0.85); margin-left:10px; display:inline-flex; align-items:center; }
+
+/* Small helpers */
+@keyframes fadeUp {
+    from { opacity:0; transform:translateY(10px); }
+    to { opacity:1; transform:translateY(0); }
+}
+
+/* Responsive */
+@media (max-width:980px){
+    .hero-inner{ flex-direction:column-reverse; text-align:center; }
+    .hero-visual img{ max-width:420px; }
+    .cards{ grid-template-columns: repeat(2,1fr); }
+}
+
+/* Mobile: show label toggle, hide menu by default, reveal when checkbox checked */
+@media (max-width:700px){
+    .nav-toggle{ display:flex; }
+    /* hide original inline navbar for mobile by default */
+    .navbar{
+        position:absolute;
+        top:64px;
+        left:0;
+        right:0;
+        background:linear-gradient(180deg, rgba(44,62,80,0.98), rgba(36,54,72,0.98));
+        transform:translateY(-10px);
+        opacity:0;
+        pointer-events:none;
+        transition: all .22s ease;
+        border-bottom-left-radius:10px;
+        border-bottom-right-radius:10px;
+    }
+    /* when checkbox is checked, show menu */
+    .nav-toggle-input:checked ~ .navbar{
+        transform:translateY(0);
+        opacity:1;
+        pointer-events:auto;
+    }
+    .navbar ul{ flex-direction:column; padding:12px; gap:6px; }
+    .cards{ grid-template-columns:1fr; }
+    .hero-text h2{ font-size:1.4rem; }
+    /* make links occupy full width in mobile menu */
+    .navbar a{ display:block; padding:12px 16px; }
+    /* accessible focus ring */
+    .nav-toggle:focus, .nav-toggle:focus-visible { outline:2px solid rgba(255,255,255,0.12); border-radius:8px; }
+}
